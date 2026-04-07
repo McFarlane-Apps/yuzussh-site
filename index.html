@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YuzuSSH — Mobile SSH Client</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --accent: #7c4dff;
+      --accent-light: #b388ff;
+      --text: #e8eaf0;
+      --text-muted: #9ca3af;
+      --green: #4ade80;
+      --terminal-bg: #0d0f14;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 2rem;
+    }
+
+    nav .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    nav .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    nav .links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav .links a:hover { color: var(--text); }
+
+    /* Hero */
+    .hero {
+      padding: 10rem 2rem 6rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 1.25rem;
+      background: linear-gradient(135deg, var(--accent-light), var(--green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      color: var(--text-muted);
+      max-width: 560px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .hero .badges {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+    }
+
+    .badge .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    /* Terminal mockup */
+    .terminal-section {
+      max-width: 750px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+    }
+
+    .terminal {
+      background: var(--terminal-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
+    }
+
+    .terminal-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 16px;
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .terminal-bar span {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--border);
+    }
+
+    .terminal-bar span:first-child { background: #ff5f57; }
+    .terminal-bar span:nth-child(2) { background: #febc2e; }
+    .terminal-bar span:nth-child(3) { background: #28c840; }
+
+    .terminal-body {
+      padding: 1.25rem;
+      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.9rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      min-height: 220px;
+    }
+
+    .terminal-body .prompt { color: var(--green); }
+    .terminal-body .cmd { color: var(--text); }
+    .terminal-body .output { color: var(--text-muted); }
+    .terminal-body .accent { color: var(--accent-light); }
+
+    /* Features */
+    .features {
+      max-width: 1100px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+    }
+
+    .features h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      transition: border-color 0.2s;
+    }
+
+    .feature-card:hover { border-color: var(--accent); }
+
+    .feature-card .icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: rgba(124, 77, 255, 0.15);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 1rem;
+      font-size: 1.2rem;
+    }
+
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Tech stack */
+    .stack {
+      max-width: 1100px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+    }
+
+    .stack h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 3rem;
+    }
+
+    .stack-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+    }
+
+    .stack-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem;
+      text-align: center;
+    }
+
+    .stack-item .name {
+      font-weight: 600;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+    }
+
+    .stack-item .desc {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* Getting started */
+    .getting-started {
+      max-width: 750px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+    }
+
+    .getting-started h2 {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+    }
+
+    .steps {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+    }
+
+    .step {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .step:last-child { margin-bottom: 0; }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: white;
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .step code {
+      display: block;
+      margin-top: 0.5rem;
+      background: var(--terminal-bg);
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+      font-family: 'SF Mono', 'Fira Code', monospace;
+      font-size: 0.85rem;
+      color: var(--green);
+      border: 1px solid var(--border);
+    }
+
+    .step p {
+      font-weight: 500;
+    }
+
+    .step .note {
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .hero h1 { font-size: 2.25rem; }
+      .hero p { font-size: 1.05rem; }
+      nav .links a { margin-left: 1rem; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="inner">
+      <a href="#" class="logo">YuzuSSH</a>
+      <div class="links">
+        <a href="#features">Features</a>
+        <a href="#stack">Tech Stack</a>
+        <a href="#get-started">Get Started</a>
+        <a href="https://github.com/McFarlane-Apps/ssh-test">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero">
+    <h1>SSH from your pocket.</h1>
+    <p>YuzuSSH is a lightweight, fast SSH client built with Flutter for Android and iOS. Connect to your servers on the go.</p>
+    <div class="badges">
+      <span class="badge"><span class="dot"></span> Flutter</span>
+      <span class="badge">Android &amp; iOS</span>
+      <span class="badge">SSH2 Protocol</span>
+      <span class="badge">xterm.js Terminal</span>
+    </div>
+  </section>
+
+  <section class="terminal-section">
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span></span><span></span><span></span>
+      </div>
+      <div class="terminal-body">
+        <div><span class="prompt">user@server:~$</span> <span class="cmd">neofetch</span></div>
+        <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_________</div>
+        <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ YuzuSSH /</div>
+        <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---------</div>
+        <div><span class="accent">&nbsp;&nbsp;OS:</span> <span class="output">Connected via YuzuSSH 1.0</span></div>
+        <div><span class="accent">&nbsp;&nbsp;Shell:</span> <span class="output">bash 5.2</span></div>
+        <div><span class="accent">&nbsp;&nbsp;Protocol:</span> <span class="output">SSH-2.0</span></div>
+        <div><span class="accent">&nbsp;&nbsp;Terminal:</span> <span class="output">xterm-256color</span></div>
+        <br>
+        <div><span class="prompt">user@server:~$</span> <span class="cmd">_</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <h2>Features</h2>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="icon">&#128274;</div>
+        <h3>Secure Connections</h3>
+        <p>Full SSH2 protocol support via dartssh2. Password authentication with secure credential storage.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#9000;</div>
+        <h3>Full Terminal Emulator</h3>
+        <p>Complete xterm-compatible terminal with 256-color support, resizable PTY, and smooth rendering.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#9000;</div>
+        <h3>Mobile Keyboard Overlay</h3>
+        <p>Extra key row with ESC, TAB, CTRL, ALT, arrow keys, and special characters. Sticky modifier support.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#128190;</div>
+        <h3>Connection Manager</h3>
+        <p>Save, edit, and organize your server connections. Quick connect for one-off sessions.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#127912;</div>
+        <h3>Material You Theming</h3>
+        <p>Dynamic color support that adapts to your device wallpaper with Material 3 design.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#9889;</div>
+        <h3>Lightweight &amp; Fast</h3>
+        <p>Built with Flutter for native performance on both Android and iOS with a single codebase.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="stack" id="stack">
+    <h2>Built With</h2>
+    <div class="stack-grid">
+      <div class="stack-item">
+        <div class="name">Flutter</div>
+        <div class="desc">Cross-platform UI framework</div>
+      </div>
+      <div class="stack-item">
+        <div class="name">dartssh2</div>
+        <div class="desc">SSH protocol implementation</div>
+      </div>
+      <div class="stack-item">
+        <div class="name">xterm</div>
+        <div class="desc">Terminal emulator widget</div>
+      </div>
+      <div class="stack-item">
+        <div class="name">dynamic_color</div>
+        <div class="desc">Material You theming</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="getting-started" id="get-started">
+    <h2>Get Started</h2>
+    <div class="steps">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <p>Clone the repository</p>
+          <code>git clone https://github.com/McFarlane-Apps/ssh-test.git</code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <p>Install dependencies</p>
+          <code>cd zestssh && fvm flutter pub get</code>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <p>Create config file</p>
+          <code>cp lib/config.example.dart lib/config.dart</code>
+          <span class="note">Add your default connection details to config.dart</span>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <div>
+          <p>Run on your device</p>
+          <code>fvm flutter run</code>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>YuzuSSH &mdash; built by <a href="https://github.com/McFarlane-Apps">McFarlane Apps</a> &middot; <a href="https://github.com/McFarlane-Apps/ssh-test">Source on GitHub</a></p>
+  </footer>
+
+</body>
+</html>
