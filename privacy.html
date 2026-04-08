@@ -201,8 +201,7 @@
       <div class="links">
         <a href="/#features">Features</a>
         <a href="/#stack">Tech Stack</a>
-        <a href="https://github.com/McFarlane-Apps/ssh-test">GitHub</a>
-      </div>
+        </div>
     </div>
   </nav>
 
@@ -227,17 +226,20 @@
 
     <div class="section">
       <h2>2. How Your Data is Stored</h2>
-      <p>Connection credentials are stored using your device's secure platform storage:</p>
+      <p>All data is stored locally on your device. We use two storage tiers depending on sensitivity:</p>
       <ul>
-        <li>Android: Android Keystore system via Flutter Secure Storage</li>
-        <li>iOS: iOS Keychain via Flutter Secure Storage</li>
+        <li><strong style="color: var(--text)">Secure storage (hardware-backed):</strong> SSH passwords and private keys are stored using Flutter Secure Storage, which uses the iOS Keychain on iOS and the Android Keystore system on Android. This data is encrypted at rest and not accessible to other apps.</li>
+        <li><strong style="color: var(--text)">Standard storage:</strong> Non-sensitive data such as connection names, hostnames, port numbers, SSH host fingerprints, and app preferences (theme, font size, timeout settings) are stored in SharedPreferences. This data does not leave your device.</li>
       </ul>
-      <p>This means your credentials are encrypted at rest using hardware-backed security where available, and are not accessible to other apps on your device.</p>
     </div>
 
     <div class="section">
       <h2>3. Network Access</h2>
-      <p>YuzuSSH uses network access solely to establish SSH connections to servers you explicitly configure. All connections are made directly from your device to your target server using the SSH-2 protocol. No traffic is routed through McFarlane Apps infrastructure.</p>
+      <p>YuzuSSH makes two kinds of outbound network connections:</p>
+      <ul>
+        <li><strong style="color: var(--text)">SSH connections</strong> — made directly from your device to servers you configure. No traffic is routed through McFarlane Apps infrastructure.</li>
+        <li><strong style="color: var(--text)">Crash reports</strong> — sent to Sentry's servers when the app encounters an unhandled error. See Section 4 for details.</li>
+      </ul>
     </div>
 
     <div class="section">
@@ -262,7 +264,7 @@
 
     <div class="section">
       <h2>6. Children's Privacy</h2>
-      <p>YuzuSSH is not directed at children under 13. We do not knowingly collect information from children. As the app collects no data whatsoever, this is moot in practice.</p>
+      <p>YuzuSSH is not directed at children under 13. We do not knowingly collect personal information from children. If you are aware that a child under 13 has provided us with information via crash reports, please contact us so we can take appropriate action.</p>
     </div>
 
     <div class="section">
@@ -272,13 +274,13 @@
 
     <div class="section">
       <h2>8. Contact</h2>
-      <p>Questions about this policy? Open an issue on <a href="https://github.com/McFarlane-Apps/ssh-test" style="color: var(--accent-light); text-decoration: none;">GitHub</a> or reach out via the repository's contact information.</p>
+      <p>Questions about this policy? Contact us at <a href="mailto:privacy@mcfarlaneapps.co.uk" style="color: var(--accent-light); text-decoration: none;">privacy@mcfarlaneapps.co.uk</a>.</p>
     </div>
 
   </div>
 
   <footer>
-    <p>YuzuSSH &mdash; built by <a href="https://github.com/McFarlane-Apps">McFarlane Apps</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Use</a> &middot; <a href="https://github.com/McFarlane-Apps/ssh-test">Source on GitHub</a></p>
+    <p>YuzuSSH &mdash; built by McFarlane Apps &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Use</a></p>
   </footer>
 
 </body>
