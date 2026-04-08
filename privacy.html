@@ -215,13 +215,14 @@
   <div class="content">
 
     <div class="callout">
-      <p><strong>Short version:</strong> YuzuSSH stores everything locally on your device. We do not collect, transmit, or have access to any of your data.</p>
+      <p><strong>Short version:</strong> YuzuSSH stores your connection data locally on your device. We use Sentry for crash reporting, which may collect limited diagnostic information when the app crashes.</p>
     </div>
 
     <div class="section">
       <h2>1. What We Collect</h2>
-      <p>YuzuSSH does not collect any personal information. The app has no analytics, no crash reporting service, and no backend servers operated by McFarlane Apps.</p>
-      <p>All data you enter into the app — including server hostnames, usernames, passwords, and port numbers — is stored exclusively on your device and is never transmitted to us.</p>
+      <p>YuzuSSH does not collect personal information directly. All data you enter into the app — including server hostnames, usernames, passwords, and port numbers — is stored exclusively on your device and is never transmitted to McFarlane Apps.</p>
+      <p>We use Sentry for crash reporting. When the app crashes or encounters an error, Sentry may automatically collect diagnostic data including device type, OS version, app version, and a stack trace of the crash. This data is used solely to identify and fix bugs.</p>
+      <p>Sentry is configured to avoid capturing sensitive data such as SSH credentials or terminal content.</p>
     </div>
 
     <div class="section">
@@ -241,7 +242,10 @@
 
     <div class="section">
       <h2>4. Third-Party Services</h2>
-      <p>YuzuSSH does not integrate any third-party analytics, advertising, or data collection services. The app has no Firebase, no Sentry, no Amplitude, and no similar SDKs.</p>
+      <p>YuzuSSH uses the following third-party service:</p>
+      <ul>
+        <li><strong style="color: var(--text)">Sentry</strong> — crash reporting and error monitoring. Crash data is sent to Sentry's servers when the app encounters an unhandled error. See <a href="https://sentry.io/privacy/" style="color: var(--accent-light); text-decoration: none;">Sentry's Privacy Policy</a> for details on how they handle this data.</li>
+      </ul>
       <p>The following open-source libraries are used and operate entirely on-device:</p>
       <ul>
         <li>dartssh2 — SSH protocol implementation</li>
