@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — YuzuSSH</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --accent: #7c4dff;
+      --accent-light: #b388ff;
+      --text: #e8eaf0;
+      --text-muted: #9ca3af;
+      --green: #4ade80;
+      --terminal-bg: #0d0f14;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 2rem;
+    }
+
+    nav .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    nav .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    nav .links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav .links a:hover { color: var(--text); }
+
+    /* Page header */
+    .page-header {
+      padding: 8rem 2rem 3rem;
+      max-width: 760px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .page-header .label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header .meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Content */
+    .content {
+      max-width: 760px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section h2::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 1.1em;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .section p {
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      font-size: 0.975rem;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+      list-style: none;
+      margin: 0.75rem 0;
+    }
+
+    .section ul li {
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      padding: 0.3rem 0 0.3rem 1.25rem;
+      position: relative;
+    }
+
+    .section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--green);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .callout p {
+      color: var(--text);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .callout p strong {
+      color: var(--green);
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .page-header h1 { font-size: 1.75rem; }
+      nav .links a { margin-left: 1rem; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="inner">
+      <a href="/" class="logo">YuzuSSH</a>
+      <div class="links">
+        <a href="/#features">Features</a>
+        <a href="/#stack">Tech Stack</a>
+        <a href="https://github.com/McFarlane-Apps/ssh-test">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="label">Legal</div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Last updated: April 2026 &middot; Applies to YuzuSSH for Android and iOS</p>
+  </div>
+
+  <div class="content">
+
+    <div class="callout">
+      <p><strong>Short version:</strong> YuzuSSH stores everything locally on your device. We do not collect, transmit, or have access to any of your data.</p>
+    </div>
+
+    <div class="section">
+      <h2>1. What We Collect</h2>
+      <p>YuzuSSH does not collect any personal information. The app has no analytics, no crash reporting service, and no backend servers operated by McFarlane Apps.</p>
+      <p>All data you enter into the app — including server hostnames, usernames, passwords, and port numbers — is stored exclusively on your device and is never transmitted to us.</p>
+    </div>
+
+    <div class="section">
+      <h2>2. How Your Data is Stored</h2>
+      <p>Connection credentials are stored using your device's secure platform storage:</p>
+      <ul>
+        <li>Android: Android Keystore system via Flutter Secure Storage</li>
+        <li>iOS: iOS Keychain via Flutter Secure Storage</li>
+      </ul>
+      <p>This means your credentials are encrypted at rest using hardware-backed security where available, and are not accessible to other apps on your device.</p>
+    </div>
+
+    <div class="section">
+      <h2>3. Network Access</h2>
+      <p>YuzuSSH uses network access solely to establish SSH connections to servers you explicitly configure. All connections are made directly from your device to your target server using the SSH-2 protocol. No traffic is routed through McFarlane Apps infrastructure.</p>
+    </div>
+
+    <div class="section">
+      <h2>4. Third-Party Services</h2>
+      <p>YuzuSSH does not integrate any third-party analytics, advertising, or data collection services. The app has no Firebase, no Sentry, no Amplitude, and no similar SDKs.</p>
+      <p>The following open-source libraries are used and operate entirely on-device:</p>
+      <ul>
+        <li>dartssh2 — SSH protocol implementation</li>
+        <li>xterm — terminal emulator widget</li>
+        <li>flutter_secure_storage — credential storage</li>
+        <li>dynamic_color — Material You theming</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>5. App Store Platforms</h2>
+      <p>When you download YuzuSSH through the Google Play Store or Apple App Store, those platforms may collect certain usage data according to their own privacy policies. This data is collected by the platform, not by McFarlane Apps, and is subject to Google's and Apple's respective privacy policies.</p>
+    </div>
+
+    <div class="section">
+      <h2>6. Children's Privacy</h2>
+      <p>YuzuSSH is not directed at children under 13. We do not knowingly collect information from children. As the app collects no data whatsoever, this is moot in practice.</p>
+    </div>
+
+    <div class="section">
+      <h2>7. Changes to This Policy</h2>
+      <p>If we ever change this policy in a material way, we will update the date at the top of this page and note the changes in the app's release notes. Continued use of the app after changes constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <div class="section">
+      <h2>8. Contact</h2>
+      <p>Questions about this policy? Open an issue on <a href="https://github.com/McFarlane-Apps/ssh-test" style="color: var(--accent-light); text-decoration: none;">GitHub</a> or reach out via the repository's contact information.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>YuzuSSH &mdash; built by <a href="https://github.com/McFarlane-Apps">McFarlane Apps</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Use</a> &middot; <a href="https://github.com/McFarlane-Apps/ssh-test">Source on GitHub</a></p>
+  </footer>
+
+</body>
+</html>

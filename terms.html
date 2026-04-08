@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use — YuzuSSH</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --border: #2a2d3a;
+      --accent: #7c4dff;
+      --accent-light: #b388ff;
+      --text: #e8eaf0;
+      --text-muted: #9ca3af;
+      --green: #4ade80;
+      --terminal-bg: #0d0f14;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Nav */
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(15, 17, 23, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 100;
+      padding: 0 2rem;
+    }
+
+    nav .inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 60px;
+    }
+
+    nav .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    nav .links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    nav .links a:hover { color: var(--text); }
+
+    /* Page header */
+    .page-header {
+      padding: 8rem 2rem 3rem;
+      max-width: 760px;
+      margin: 0 auto;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 3rem;
+    }
+
+    .page-header .label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+    }
+
+    .page-header .meta {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Content */
+    .content {
+      max-width: 760px;
+      margin: 0 auto 6rem;
+      padding: 0 2rem;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section h2 {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .section h2::before {
+      content: '';
+      display: inline-block;
+      width: 3px;
+      height: 1.1em;
+      background: var(--accent);
+      border-radius: 2px;
+      flex-shrink: 0;
+    }
+
+    .section p {
+      color: var(--text-muted);
+      margin-bottom: 0.75rem;
+      font-size: 0.975rem;
+    }
+
+    .section p:last-child { margin-bottom: 0; }
+
+    .section ul {
+      list-style: none;
+      margin: 0.75rem 0;
+    }
+
+    .section ul li {
+      color: var(--text-muted);
+      font-size: 0.975rem;
+      padding: 0.3rem 0 0.3rem 1.25rem;
+      position: relative;
+    }
+
+    .section ul li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--border);
+    }
+
+    .callout {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .callout p {
+      color: var(--text);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .callout p strong {
+      color: var(--accent-light);
+    }
+
+    .warning {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid #f59e0b;
+      border-radius: 8px;
+      padding: 1.25rem 1.5rem;
+      margin: 1.5rem 0;
+    }
+
+    .warning p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin: 0;
+    }
+
+    .warning p strong {
+      color: #f59e0b;
+    }
+
+    /* Footer */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+
+    footer a {
+      color: var(--accent-light);
+      text-decoration: none;
+    }
+
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 640px) {
+      .page-header h1 { font-size: 1.75rem; }
+      nav .links a { margin-left: 1rem; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div class="inner">
+      <a href="/" class="logo">YuzuSSH</a>
+      <div class="links">
+        <a href="/#features">Features</a>
+        <a href="/#stack">Tech Stack</a>
+        <a href="https://github.com/McFarlane-Apps/ssh-test">GitHub</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-header">
+    <div class="label">Legal</div>
+    <h1>Terms of Use</h1>
+    <p class="meta">Last updated: April 2026 &middot; Applies to YuzuSSH for Android and iOS</p>
+  </div>
+
+  <div class="content">
+
+    <div class="callout">
+      <p><strong>By using YuzuSSH you agree to these terms.</strong> If you don't agree, don't use the app.</p>
+    </div>
+
+    <div class="section">
+      <h2>1. Acceptance of Terms</h2>
+      <p>These Terms of Use govern your use of YuzuSSH ("the App"), developed and maintained by McFarlane Apps. By downloading, installing, or using the App, you agree to be bound by these terms.</p>
+    </div>
+
+    <div class="section">
+      <h2>2. Permitted Use</h2>
+      <p>YuzuSSH is a tool for establishing SSH connections to servers. You may use the App to:</p>
+      <ul>
+        <li>Connect to servers you own or are authorised to access</li>
+        <li>Administer remote systems with the permission of the system owner</li>
+        <li>Perform legitimate development, operations, and system administration tasks</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>3. Prohibited Use</h2>
+      <p>You may not use YuzuSSH to:</p>
+      <ul>
+        <li>Access any system without explicit authorisation from the owner</li>
+        <li>Perform unauthorised penetration testing or vulnerability scanning</li>
+        <li>Interfere with, disrupt, or damage any network, server, or system</li>
+        <li>Facilitate or assist any illegal activity</li>
+        <li>Circumvent security controls on systems you do not own or control</li>
+      </ul>
+      <p>Unauthorised access to computer systems is illegal in most jurisdictions. You are solely responsible for ensuring you have permission before connecting to any server.</p>
+    </div>
+
+    <div class="section">
+      <h2>4. Licence</h2>
+      <p>Subject to your compliance with these terms, McFarlane Apps grants you a limited, non-exclusive, non-transferable licence to install and use YuzuSSH on devices you own or control, for your personal or professional use.</p>
+      <p>The source code is available on GitHub. Where an open-source licence is specified in the repository, that licence governs the source code. These Terms of Use govern the compiled app as distributed.</p>
+    </div>
+
+    <div class="section">
+      <h2>5. Your Responsibilities</h2>
+      <p>You are responsible for:</p>
+      <ul>
+        <li>Keeping your SSH credentials secure and not sharing them inappropriately</li>
+        <li>The actions performed on remote servers during your SSH sessions</li>
+        <li>Complying with the terms of service of any server or platform you connect to</li>
+        <li>Maintaining backups of any data on systems you administer</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>6. No Warranty</h2>
+      <div class="warning">
+        <p><strong>YuzuSSH is provided "as is", without warranty of any kind.</strong> McFarlane Apps makes no guarantees about reliability, availability, or fitness for any particular purpose. Use it at your own risk, especially in production environments.</p>
+      </div>
+      <p>To the maximum extent permitted by applicable law, McFarlane Apps disclaims all warranties, express or implied, including warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+    </div>
+
+    <div class="section">
+      <h2>7. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by law, McFarlane Apps shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising from your use or inability to use the App, including but not limited to loss of data, loss of revenue, or system damage.</p>
+    </div>
+
+    <div class="section">
+      <h2>8. Changes to the App and Terms</h2>
+      <p>We may update the App or these Terms at any time. Continued use of the App after a Terms update constitutes acceptance of the revised Terms. Material changes will be noted in release notes.</p>
+    </div>
+
+    <div class="section">
+      <h2>9. Governing Law</h2>
+      <p>These Terms are governed by the laws of the jurisdiction in which McFarlane Apps operates, without regard to conflict of law principles.</p>
+    </div>
+
+    <div class="section">
+      <h2>10. Contact</h2>
+      <p>Questions about these Terms? Open an issue on <a href="https://github.com/McFarlane-Apps/ssh-test" style="color: var(--accent-light); text-decoration: none;">GitHub</a> or reach out via the repository's contact information.</p>
+    </div>
+
+  </div>
+
+  <footer>
+    <p>YuzuSSH &mdash; built by <a href="https://github.com/McFarlane-Apps">McFarlane Apps</a> &middot; <a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms of Use</a> &middot; <a href="https://github.com/McFarlane-Apps/ssh-test">Source on GitHub</a></p>
+  </footer>
+
+</body>
+</html>
