@@ -4,23 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Privacy Policy — YuzuSSH</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --border: #2a2d3a;
-      --accent: #7c4dff;
-      --accent-light: #b388ff;
-      --text: #e8eaf0;
-      --text-muted: #9ca3af;
-      --green: #4ade80;
-      --terminal-bg: #0d0f14;
+      --bg:           #FAF6EE;
+      --surface:      #FFF8E8;
+      --border:       #EDD68A;
+      --border-soft:  #F5E8B8;
+      --primary:      #B8860B;
+      --primary-dark: #8B6508;
+      --amber:        #E8A000;
+      --text:         #1A0F00;
+      --text-muted:   #8A6235;
+      --white:        #FFFEF8;
+      /* inline-style aliases */
+      --accent:       #B8860B;
+      --accent-light: #B8860B;
+      --green:        #6A8A00;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
@@ -31,9 +39,10 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: rgba(15, 17, 23, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      background: rgba(250, 246, 238, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
       z-index: 100;
       padding: 0 2rem;
     }
@@ -48,45 +57,59 @@
     }
 
     nav .logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--accent-light);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary);
       text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    nav .logo img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
     }
 
     nav .links a {
-      color: var(--text-muted);
+      color: #4A2D0A;
       text-decoration: none;
       margin-left: 2rem;
-      font-size: 0.95rem;
-      transition: color 0.2s;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
     }
 
-    nav .links a:hover { color: var(--text); }
+    nav .links a:hover { color: var(--primary); }
 
     /* Page header */
     .page-header {
       padding: 8rem 2rem 3rem;
       max-width: 760px;
       margin: 0 auto;
-      border-bottom: 1px solid var(--border);
+      border-bottom: 1px solid var(--border-soft);
       margin-bottom: 3rem;
     }
 
     .page-header .label {
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       font-weight: 600;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--accent-light);
+      color: var(--primary);
       margin-bottom: 0.75rem;
     }
 
     .page-header h1 {
+      font-family: 'Fraunces', serif;
       font-size: 2.5rem;
       font-weight: 800;
       letter-spacing: -0.03em;
       margin-bottom: 0.75rem;
+      color: var(--text);
     }
 
     .page-header .meta {
@@ -106,8 +129,8 @@
     }
 
     .section h2 {
-      font-size: 1.15rem;
-      font-weight: 700;
+      font-size: 1.1rem;
+      font-weight: 600;
       margin-bottom: 1rem;
       color: var(--text);
       display: flex;
@@ -120,7 +143,7 @@
       display: inline-block;
       width: 3px;
       height: 1.1em;
-      background: var(--accent);
+      background: var(--primary);
       border-radius: 2px;
       flex-shrink: 0;
     }
@@ -154,8 +177,8 @@
 
     .callout {
       background: var(--surface);
-      border: 1px solid var(--border);
-      border-left: 3px solid var(--green);
+      border: 1px solid var(--border-soft);
+      border-left: 3px solid var(--amber);
       border-radius: 8px;
       padding: 1.25rem 1.5rem;
       margin: 1.5rem 0;
@@ -168,20 +191,21 @@
     }
 
     .callout p strong {
-      color: var(--green);
+      color: var(--primary);
     }
 
     /* Footer */
     footer {
-      border-top: 1px solid var(--border);
+      background: var(--primary);
       padding: 2rem;
       text-align: center;
-      color: var(--text-muted);
       font-size: 0.85rem;
     }
 
+    footer p { color: rgba(255,255,255,0.75); }
+
     footer a {
-      color: var(--accent-light);
+      color: rgba(255,255,255,0.9);
       text-decoration: none;
     }
 
@@ -197,7 +221,10 @@
 
   <nav>
     <div class="inner">
-      <a href="https://yuzussh.mcfarlaneapps.co.uk/" class="logo">YuzuSSH</a>
+      <a href="https://yuzussh.mcfarlaneapps.co.uk/" class="logo">
+        <img src="app_icon.png" alt="YuzuSSH icon">
+        YuzuSSH
+      </a>
       <div class="links">
         <a href="https://yuzussh.mcfarlaneapps.co.uk/#features">Features</a>
         <a href="https://yuzussh.mcfarlaneapps.co.uk/#stack">Tech Stack</a>

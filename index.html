@@ -3,37 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>YuzuSSH — Mobile SSH Client</title>
+  <title>YuzuSSH — SSH &amp; Terminal for Android &amp; iOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,600;9..144,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0f1117;
-      --surface: #1a1d27;
-      --border: #2a2d3a;
-      --accent: #7c4dff;
-      --accent-light: #b388ff;
-      --text: #e8eaf0;
-      --text-muted: #9ca3af;
-      --green: #4ade80;
-      --terminal-bg: #0d0f14;
+      --bg:           #FAF6EE;
+      --surface:      #FFF8E8;
+      --surface-2:    #FFF0C8;
+      --border:       #EDD68A;
+      --border-soft:  #F5E8B8;
+      --primary:      #B8860B;
+      --primary-dark: #8B6508;
+      --amber:        #E8A000;
+      --text:         #1A0F00;
+      --text-2:       #4A2D0A;
+      --text-muted:   #8A6235;
+      --white:        #FFFEF8;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-family: 'DM Sans', sans-serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
 
-    /* Nav */
+    /* ── NAV ─────────────────────────────────────────── */
     nav {
       position: fixed;
-      top: 0;
-      width: 100%;
-      background: rgba(15, 17, 23, 0.85);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border);
+      top: 0; width: 100%;
+      background: rgba(250, 246, 238, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-soft);
       z-index: 100;
       padding: 0 2rem;
     }
@@ -48,159 +54,257 @@
     }
 
     nav .logo {
-      font-size: 1.25rem;
-      font-weight: 700;
-      color: var(--accent-light);
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-family: 'Fraunces', serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--primary);
       text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+
+    nav .logo img {
+      width: 28px;
+      height: 28px;
+      border-radius: 6px;
     }
 
     nav .links a {
-      color: var(--text-muted);
+      color: var(--text-2);
       text-decoration: none;
       margin-left: 2rem;
-      font-size: 0.95rem;
-      transition: color 0.2s;
+      font-size: 0.9rem;
+      font-weight: 500;
+      transition: color 0.15s;
     }
 
-    nav .links a:hover { color: var(--text); }
+    nav .links a:hover { color: var(--primary); }
 
-    /* Hero */
+    /* ── HERO ────────────────────────────────────────── */
+    .hero-wrap {
+      background:
+        radial-gradient(ellipse 80% 55% at 68% 55%, rgba(232,160,0,0.09) 0%, transparent 70%);
+    }
+
     .hero {
-      padding: 10rem 2rem 6rem;
-      text-align: center;
-      max-width: 800px;
+      max-width: 1100px;
       margin: 0 auto;
+      padding: 8.5rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
     }
 
-    .hero h1 {
-      font-size: 3.5rem;
+    .hero-text .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.45rem;
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
+      border-radius: 999px;
+      padding: 0.3rem 0.9rem;
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-text .eyebrow::before {
+      content: '';
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--amber);
+      flex-shrink: 0;
+    }
+
+    .hero-text h1 {
+      font-family: 'Fraunces', serif;
+      font-size: 3.75rem;
       font-weight: 800;
+      line-height: 1.05;
       letter-spacing: -0.03em;
+      color: var(--text);
       margin-bottom: 1.25rem;
-      background: linear-gradient(135deg, var(--accent-light), var(--green));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
     }
 
-    .hero p {
-      font-size: 1.25rem;
-      color: var(--text-muted);
-      max-width: 560px;
-      margin: 0 auto 2.5rem;
+    .hero-text h1 em {
+      font-style: italic;
+      color: var(--primary);
     }
 
-    .hero .badges {
+    .hero-text > p {
+      font-size: 1.08rem;
+      color: var(--text-2);
+      max-width: 440px;
+      margin-bottom: 2.25rem;
+      line-height: 1.75;
+    }
+
+    .hero-badges {
       display: flex;
-      gap: 0.75rem;
-      justify-content: center;
+      gap: 0.6rem;
       flex-wrap: wrap;
+      align-items: center;
     }
 
     .badge {
       display: inline-flex;
       align-items: center;
-      gap: 0.4rem;
-      padding: 0.5rem 1rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
+      gap: 0.35rem;
+      padding: 0.4rem 0.9rem;
+      border-radius: 8px;
+      font-size: 0.8rem;
       font-weight: 500;
-      border: 1px solid var(--border);
+      border: 1px solid var(--border-soft);
       background: var(--surface);
-      color: var(--text-muted);
+      color: var(--text-2);
     }
 
-    .badge .dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--green);
+    .store-btn {
+      display: inline-block;
+      text-decoration: none;
+      transition: opacity 0.15s, transform 0.15s;
     }
 
-    /* Terminal mockup */
-    .terminal-section {
-      max-width: 750px;
-      margin: 0 auto 6rem;
-      padding: 0 2rem;
+    .store-btn:hover { opacity: 0.88; transform: translateY(-1px); }
+
+    .store-btn img {
+      height: 48px;
+      display: block;
     }
 
-    .terminal {
-      background: var(--terminal-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 25px 60px rgba(0,0,0,0.4);
-    }
-
-    .terminal-bar {
+    /* ── HERO VISUAL ─────────────────────────────────── */
+    .hero-visual {
       display: flex;
+      justify-content: center;
       align-items: center;
-      gap: 8px;
-      padding: 12px 16px;
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
     }
 
-    .terminal-bar span {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      background: var(--border);
+    .device-frame {
+      background: var(--primary-dark);
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow:
+        0 0 0 1px rgba(139,101,8,0.3),
+        0 32px 80px rgba(70,35,0,0.22),
+        0 8px 24px rgba(70,35,0,0.12);
+      width: 100%;
+      max-width: 520px;
     }
 
-    .terminal-bar span:first-child { background: #ff5f57; }
-    .terminal-bar span:nth-child(2) { background: #febc2e; }
-    .terminal-bar span:nth-child(3) { background: #28c840; }
+    .device-frame img {
+      width: 100%;
+      border-radius: 12px;
+      display: block;
+    }
 
-    .terminal-body {
-      padding: 1.25rem;
-      font-family: 'SF Mono', 'Fira Code', 'Cascadia Code', monospace;
-      font-size: 0.9rem;
-      line-height: 1.7;
+    /* ── SCREENSHOTS ─────────────────────────────────── */
+    .screenshots {
+      background: var(--primary);
+      padding: 5rem 2rem;
+    }
+
+    .screenshots h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: #fff;
+      text-align: center;
+      margin-bottom: 2.75rem;
+      letter-spacing: -0.02em;
+    }
+
+    .screenshots-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem;
+    }
+
+    .screenshot-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .screenshot-frame {
+      background: var(--primary-dark);
+      border-radius: 14px;
+      padding: 7px;
+      box-shadow: 0 10px 35px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.18);
+    }
+
+    .screenshot-frame img {
+      width: 100%;
+      border-radius: 9px;
+      display: block;
+    }
+
+    .screenshot-caption {
+      color: rgba(255,255,255,0.62);
+      font-size: 0.77rem;
+      font-weight: 500;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    /* ── SECTION HEADER ──────────────────────────────── */
+    .section-header {
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .section-header h2 {
+      font-family: 'Fraunces', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      letter-spacing: -0.025em;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+    }
+
+    .section-header p {
       color: var(--text-muted);
-      min-height: 220px;
+      font-size: 0.95rem;
     }
 
-    .terminal-body .prompt { color: var(--green); }
-    .terminal-body .cmd { color: var(--text); }
-    .terminal-body .output { color: var(--text-muted); }
-    .terminal-body .accent { color: var(--accent-light); }
-
-    /* Features */
+    /* ── FEATURES ────────────────────────────────────── */
     .features {
       max-width: 1100px;
-      margin: 0 auto 6rem;
-      padding: 0 2rem;
-    }
-
-    .features h2 {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
+      margin: 0 auto;
+      padding: 6rem 2rem;
     }
 
     .features-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 1.5rem;
+      gap: 1.25rem;
     }
 
     .feature-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
-      transition: border-color 0.2s;
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: 14px;
+      padding: 1.75rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
     }
 
-    .feature-card:hover { border-color: var(--accent); }
+    .feature-card:hover {
+      border-color: var(--border);
+      box-shadow: 0 4px 22px rgba(184,134,11,0.1);
+    }
 
     .feature-card .icon {
-      width: 40px;
-      height: 40px;
+      width: 42px; height: 42px;
       border-radius: 10px;
-      background: rgba(124, 77, 255, 0.15);
+      background: var(--surface);
+      border: 1px solid var(--border-soft);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -209,28 +313,29 @@
     }
 
     .feature-card h3 {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 600;
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
+      color: var(--text);
     }
 
     .feature-card p {
       color: var(--text-muted);
-      font-size: 0.95rem;
+      font-size: 0.88rem;
+      line-height: 1.65;
     }
 
-    /* Tech stack */
+    /* ── STACK ───────────────────────────────────────── */
     .stack {
-      max-width: 1100px;
-      margin: 0 auto 6rem;
-      padding: 0 2rem;
+      background: var(--surface);
+      border-top: 1px solid var(--border-soft);
+      border-bottom: 1px solid var(--border-soft);
+      padding: 5rem 2rem;
     }
 
-    .stack h2 {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 3rem;
+    .stack-inner {
+      max-width: 1100px;
+      margin: 0 auto;
     }
 
     .stack-grid {
@@ -240,109 +345,118 @@
     }
 
     .stack-item {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      padding: 1.25rem;
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: 12px;
+      padding: 1.25rem 1.5rem;
       text-align: center;
     }
 
     .stack-item .name {
-      font-weight: 600;
-      font-size: 1rem;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 500;
+      font-size: 0.9rem;
+      color: var(--primary);
       margin-bottom: 0.25rem;
     }
 
     .stack-item .desc {
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       color: var(--text-muted);
     }
 
-    /* Getting started */
+    /* ── GET STARTED ─────────────────────────────────── */
     .getting-started {
-      max-width: 750px;
-      margin: 0 auto 6rem;
-      padding: 0 2rem;
-    }
-
-    .getting-started h2 {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 700;
-      margin-bottom: 2rem;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 6rem 2rem;
     }
 
     .steps {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 2rem;
+      background: var(--white);
+      border: 1px solid var(--border-soft);
+      border-radius: 16px;
+      padding: 2.25rem 2rem;
     }
 
     .step {
       display: flex;
-      gap: 1rem;
+      gap: 1.25rem;
+      align-items: flex-start;
+      padding-bottom: 1.5rem;
       margin-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border-soft);
     }
 
-    .step:last-child { margin-bottom: 0; }
+    .step:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+      border-bottom: none;
+    }
 
     .step-num {
       flex-shrink: 0;
-      width: 28px;
-      height: 28px;
+      width: 28px; height: 28px;
       border-radius: 50%;
-      background: var(--accent);
-      color: white;
-      font-size: 0.85rem;
+      background: var(--primary);
+      color: #fff;
+      font-size: 0.8rem;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-    }
-
-    .step code {
-      display: block;
-      margin-top: 0.5rem;
-      background: var(--terminal-bg);
-      padding: 0.5rem 0.75rem;
-      border-radius: 6px;
-      font-family: 'SF Mono', 'Fira Code', monospace;
-      font-size: 0.85rem;
-      color: var(--green);
-      border: 1px solid var(--border);
+      margin-top: 0.1rem;
     }
 
     .step p {
-      font-weight: 500;
+      font-weight: 600;
+      font-size: 0.98rem;
+      margin-bottom: 0.2rem;
+      color: var(--text);
     }
 
     .step .note {
       font-weight: 400;
       color: var(--text-muted);
-      font-size: 0.9rem;
+      font-size: 0.88rem;
     }
 
-    /* Footer */
+    /* ── FOOTER ──────────────────────────────────────── */
     footer {
-      border-top: 1px solid var(--border);
+      background: var(--primary);
       padding: 2rem;
       text-align: center;
-      color: var(--text-muted);
+    }
+
+    footer p {
+      color: rgba(255,255,255,0.75);
       font-size: 0.85rem;
     }
 
     footer a {
-      color: var(--accent-light);
+      color: rgba(255,255,255,0.9);
       text-decoration: none;
     }
 
     footer a:hover { text-decoration: underline; }
 
-    @media (max-width: 640px) {
-      .hero h1 { font-size: 2.25rem; }
-      .hero p { font-size: 1.05rem; }
+    /* ── RESPONSIVE ──────────────────────────────────── */
+    @media (max-width: 800px) {
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+        padding-top: 7rem;
+      }
+
+      .hero-text h1 { font-size: 2.75rem; }
+      .hero-text > p { max-width: 100%; }
+
+      .screenshots-grid { grid-template-columns: 1fr; }
       nav .links a { margin-left: 1rem; font-size: 0.85rem; }
+    }
+
+    @media (max-width: 480px) {
+      .hero-text h1 { font-size: 2.1rem; }
     }
   </style>
 </head>
@@ -350,7 +464,10 @@
 
   <nav>
     <div class="inner">
-      <a href="#" class="logo">YuzuSSH</a>
+      <a href="#" class="logo">
+        <img src="app_icon.png" alt="YuzuSSH icon">
+        YuzuSSH
+      </a>
       <div class="links">
         <a href="#features">Features</a>
         <a href="#stack">Tech Stack</a>
@@ -359,103 +476,130 @@
     </div>
   </nav>
 
-  <section class="hero">
-    <h1>SSH from your pocket.</h1>
-    <p>YuzuSSH is a lightweight, fast SSH client built with Flutter for Android and iOS. Connect to your servers on the go.</p>
-    <div class="badges">
-      <span class="badge"><span class="dot"></span> Flutter</span>
-      <span class="badge">Android &amp; iOS</span>
-      <span class="badge">SSH2 Protocol</span>
-      <span class="badge">xterm.js Terminal</span>
-    </div>
-  </section>
-
-  <section class="terminal-section">
-    <div class="terminal">
-      <div class="terminal-bar">
-        <span></span><span></span><span></span>
+  <div class="hero-wrap">
+    <section class="hero">
+      <div class="hero-text">
+        <div class="eyebrow">Android &amp; iOS</div>
+        <h1>SSH from your <em>pocket.</em></h1>
+        <p>A lightweight, beautiful SSH client for Android and iOS. Manage your servers anywhere with a full terminal emulator that fits in your hand.</p>
+        <div class="hero-badges">
+          <a class="store-btn" href="https://play.google.com/store/apps/details?id=com.alitheg.yuzussh">
+            <img src="badge_google_play.png" alt="Get it on Google Play">
+          </a>
+          <span class="badge">⚡ Flutter</span>
+          <span class="badge">🔒 SSH2 Protocol</span>
+          <span class="badge">📟 xterm Terminal</span>
+        </div>
       </div>
-      <div class="terminal-body">
-        <div><span class="prompt">user@server:~$</span> <span class="cmd">neofetch</span></div>
-        <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;_________</div>
-        <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/ YuzuSSH /</div>
-        <div class="output">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;---------</div>
-        <div><span class="accent">&nbsp;&nbsp;OS:</span> <span class="output">Connected via YuzuSSH 1.0</span></div>
-        <div><span class="accent">&nbsp;&nbsp;Shell:</span> <span class="output">bash 5.2</span></div>
-        <div><span class="accent">&nbsp;&nbsp;Protocol:</span> <span class="output">SSH-2.0</span></div>
-        <div><span class="accent">&nbsp;&nbsp;Terminal:</span> <span class="output">xterm-256color</span></div>
-        <br>
-        <div><span class="prompt">user@server:~$</span> <span class="cmd">_</span></div>
+      <div class="hero-visual">
+        <div class="device-frame">
+          <img src="screenshots/01_home.png" alt="YuzuSSH home screen">
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="screenshots">
+    <h2>Every screen, considered.</h2>
+    <div class="screenshots-grid">
+      <div class="screenshot-wrap">
+        <div class="screenshot-frame">
+          <img src="screenshots/02_connections.png" alt="Connections list">
+        </div>
+        <p class="screenshot-caption">Connections</p>
+      </div>
+      <div class="screenshot-wrap">
+        <div class="screenshot-frame">
+          <img src="screenshots/03_connection_edit.png" alt="Edit connection">
+        </div>
+        <p class="screenshot-caption">Add &amp; Edit Connections</p>
+      </div>
+      <div class="screenshot-wrap">
+        <div class="screenshot-frame">
+          <img src="screenshots/04_settings.png" alt="Settings">
+        </div>
+        <p class="screenshot-caption">Settings</p>
       </div>
     </div>
   </section>
 
   <section class="features" id="features">
-    <h2>Features</h2>
+    <div class="section-header">
+      <h2>Built for the terminal.</h2>
+      <p>Everything you need, nothing you don't.</p>
+    </div>
     <div class="features-grid">
       <div class="feature-card">
-        <div class="icon">&#128274;</div>
+        <div class="icon">🔒</div>
         <h3>Secure Connections</h3>
-        <p>Full SSH2 protocol support via dartssh2. Password authentication with secure credential storage.</p>
+        <p>Full SSH2 protocol support via dartssh2. Password and key authentication with secure credential storage.</p>
       </div>
       <div class="feature-card">
-        <div class="icon">&#9000;</div>
+        <div class="icon">⌨️</div>
         <h3>Full Terminal Emulator</h3>
-        <p>Complete xterm-compatible terminal with 256-color support, resizable PTY, and smooth rendering.</p>
+        <p>Complete xterm-compatible terminal with 256-colour support, resizable PTY, and smooth rendering.</p>
       </div>
       <div class="feature-card">
-        <div class="icon">&#9000;</div>
+        <div class="icon">📱</div>
         <h3>Mobile Keyboard Overlay</h3>
         <p>Extra key row with ESC, TAB, CTRL, ALT, arrow keys, and special characters. Sticky modifier support.</p>
       </div>
       <div class="feature-card">
-        <div class="icon">&#128190;</div>
+        <div class="icon">💾</div>
         <h3>Connection Manager</h3>
-        <p>Save, edit, and organize your server connections. Quick connect for one-off sessions.</p>
+        <p>Save, edit, and organise your server connections. Quick connect for one-off sessions.</p>
       </div>
       <div class="feature-card">
-        <div class="icon">&#127912;</div>
+        <div class="icon">🎨</div>
         <h3>Material You Theming</h3>
-        <p>Dynamic color support that adapts to your device wallpaper with Material 3 design.</p>
+        <p>Dynamic colour support that adapts to your device wallpaper with Material 3 design language.</p>
       </div>
       <div class="feature-card">
-        <div class="icon">&#9889;</div>
+        <div class="icon">⚡</div>
         <h3>Lightweight &amp; Fast</h3>
-        <p>Built with Flutter for native performance on both Android and iOS with a single codebase.</p>
+        <p>Built with Flutter for native performance on both Android and iOS from a single codebase.</p>
       </div>
     </div>
   </section>
 
   <section class="stack" id="stack">
-    <h2>Built With</h2>
-    <div class="stack-grid">
-      <div class="stack-item">
-        <div class="name">Flutter</div>
-        <div class="desc">Cross-platform UI framework</div>
+    <div class="stack-inner">
+      <div class="section-header">
+        <h2>Built with.</h2>
+        <p>Modern tools for a modern mobile app.</p>
       </div>
-      <div class="stack-item">
-        <div class="name">dartssh2</div>
-        <div class="desc">SSH protocol implementation</div>
-      </div>
-      <div class="stack-item">
-        <div class="name">xterm</div>
-        <div class="desc">Terminal emulator widget</div>
-      </div>
-      <div class="stack-item">
-        <div class="name">dynamic_color</div>
-        <div class="desc">Material You theming</div>
+      <div class="stack-grid">
+        <div class="stack-item">
+          <div class="name">Flutter</div>
+          <div class="desc">Cross-platform UI framework</div>
+        </div>
+        <div class="stack-item">
+          <div class="name">dartssh2</div>
+          <div class="desc">SSH protocol implementation</div>
+        </div>
+        <div class="stack-item">
+          <div class="name">xterm</div>
+          <div class="desc">Terminal emulator widget</div>
+        </div>
+        <div class="stack-item">
+          <div class="name">dynamic_color</div>
+          <div class="desc">Material You theming</div>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="getting-started" id="get-started">
-    <h2>Get Started</h2>
+    <div class="section-header">
+      <h2>Get started.</h2>
+      <p>Up and running in minutes.</p>
+    </div>
     <div class="steps">
       <div class="step">
         <div class="step-num">1</div>
         <div>
           <p>Download YuzuSSH</p>
-          <span class="note">Available on the App Store and Google Play</span>
+          <span class="note">Available on <a href="https://play.google.com/store/apps/details?id=com.alitheg.yuzussh" style="color: var(--primary); font-weight: 500;">Google Play</a> and the App Store</span>
         </div>
       </div>
       <div class="step">
