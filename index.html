@@ -325,44 +325,62 @@
       line-height: 1.65;
     }
 
-    /* ── STACK ───────────────────────────────────────── */
-    .stack {
+    /* ── WHY ─────────────────────────────────────────── */
+    .why {
       background: var(--surface);
       border-top: 1px solid var(--border-soft);
       border-bottom: 1px solid var(--border-soft);
       padding: 5rem 2rem;
     }
 
-    .stack-inner {
+    .why-inner {
       max-width: 1100px;
       margin: 0 auto;
     }
 
-    .stack-grid {
+    .why-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
     }
 
-    .stack-item {
+    .why-item {
+      padding: 1.75rem;
       background: var(--white);
       border: 1px solid var(--border-soft);
-      border-radius: 12px;
-      padding: 1.25rem 1.5rem;
-      text-align: center;
+      border-radius: 14px;
     }
 
-    .stack-item .name {
-      font-family: 'JetBrains Mono', monospace;
-      font-weight: 500;
-      font-size: 0.9rem;
-      color: var(--primary);
-      margin-bottom: 0.25rem;
+    .why-item .why-num {
+      font-family: 'Fraunces', serif;
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--border);
+      line-height: 1;
+      margin-bottom: 1rem;
+      letter-spacing: -0.04em;
     }
 
-    .stack-item .desc {
-      font-size: 0.82rem;
+    .why-item h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .why-item p {
+      font-size: 0.88rem;
       color: var(--text-muted);
+      line-height: 1.65;
+    }
+
+    @media (max-width: 700px) {
+      .why-grid { grid-template-columns: 1fr; }
+    }
+
+    .why-item.commitment {
+      border-color: var(--border);
+      background: var(--surface-2);
     }
 
     /* ── GET STARTED ─────────────────────────────────── */
@@ -470,7 +488,7 @@
       </a>
       <div class="links">
         <a href="#features">Features</a>
-        <a href="#stack">Tech Stack</a>
+        <a href="#why">Why YuzuSSH?</a>
         <a href="#get-started">Get Started</a>
       </div>
     </div>
@@ -562,28 +580,32 @@
     </div>
   </section>
 
-  <section class="stack" id="stack">
-    <div class="stack-inner">
+  <section class="why" id="why">
+    <div class="why-inner">
       <div class="section-header">
-        <h2>Built with.</h2>
-        <p>Modern tools for a modern mobile app.</p>
+        <h2>Why YuzuSSH?</h2>
+        <p>Designed for people who actually need SSH on their phone.</p>
       </div>
-      <div class="stack-grid">
-        <div class="stack-item">
-          <div class="name">Flutter</div>
-          <div class="desc">Cross-platform UI framework</div>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-num">01</div>
+          <h3>Your data stays on your device</h3>
+          <p>Credentials, saved connections, and preferences never leave your phone. No accounts, no cloud required — just you and your servers.</p>
         </div>
-        <div class="stack-item">
-          <div class="name">dartssh2</div>
-          <div class="desc">SSH protocol implementation</div>
+        <div class="why-item">
+          <div class="why-num">02</div>
+          <h3>One tap from any server</h3>
+          <p>Save your connections once. Whether you're on the sofa or on a flight, your servers are always a tap away — no re-entering credentials.</p>
         </div>
-        <div class="stack-item">
-          <div class="name">xterm</div>
-          <div class="desc">Terminal emulator widget</div>
+        <div class="why-item">
+          <div class="why-num">03</div>
+          <h3>Built around touch, not ported from desktop</h3>
+          <p>A dedicated mobile keyboard overlay with ESC, CTRL, and arrow keys means you can actually get work done — not just view logs.</p>
         </div>
-        <div class="stack-item">
-          <div class="name">dynamic_color</div>
-          <div class="desc">Material You theming</div>
+        <div class="why-item commitment">
+          <div class="why-num">04</div>
+          <h3>A commitment to the community</h3>
+          <p>If we ever stop maintaining YuzuSSH, we commit to releasing the source code so the community can carry it forward.</p>
         </div>
       </div>
     </div>
